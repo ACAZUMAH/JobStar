@@ -6,7 +6,7 @@ import auth from '../services/authservices/jwt';
 const router = Router();
 
 router.use('/api/v1/jobly', authRoute);  
-router.use('/api/v1/jobly', auth.authorize, jobRoute);
+router.use('/api/v1/jobly', jobRoute);
 
 export default router;
 

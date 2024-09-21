@@ -1,3 +1,4 @@
+import { required } from 'joi';
 import { Types,model, Schema } from 'mongoose';
 
 export const jobSchema = new Schema({
@@ -20,12 +21,9 @@ export const jobSchema = new Schema({
     createdBy:{
         type: Types.ObjectId,
         ref: 'User',
+        required: true
     },
-    createdAt:{
-        type: Date,
-        default: Date.now,
-    }
-})
+}, {timestamps: true})
 
 const Job = model('Jobs', jobSchema);
 export default Job;
