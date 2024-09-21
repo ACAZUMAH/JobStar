@@ -23,8 +23,18 @@ export interface job {
     company: string;
     position: string;
     status: string;
+    salary: string;
     createdBy: string | Types.ObjectId;
     createdAt: Date;
+}
+
+export interface update {
+    userId: string | Types.ObjectId;
+    jobId: string | Types.ObjectId;
+    company?: string;
+    position?: string;
+    status?: string;  
+    salary?: string;
 }
 
 export {};

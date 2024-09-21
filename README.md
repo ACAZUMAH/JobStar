@@ -107,20 +107,28 @@
     <td><code>GET /jobs</code></td>
     <td>Get all jobs</td>
   </tr>
+   <tr>
+    <td><code>GET /jobs/user</code></td>
+    <td>get all jobs of a user</td>
+  </tr>
   <tr>
-    <td><code>POST /jobs</code></td>
+    <td><code>GET /jobs/user?id</code></td>
+    <td>get one job of a user</td>
+  </tr>
+  <tr>
+    <td><code>POST /jobs/post</code></td>
     <td>Create a new job</td>
   </tr>
   <tr>
-    <td><code>PUT /jobs/:id</code></td>
+    <td><code>PUT /jobs/update?id</code></td>
     <td>Update a job</td>
   </tr>
   <tr>
-    <td><code>DELETE /jobs/:id</code></td>
+    <td><code>DELETE /jobs/delete?id</code></td>
     <td>Delete a job</td>
   </tr>
   <tr>
-    <td><code>GET /jobs/search</code></td>
+    <td><code>GET /search</code></td>
     <td>Search for jobs by filters</td>
   </tr>
 </table>

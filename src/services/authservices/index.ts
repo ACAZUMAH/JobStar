@@ -13,9 +13,6 @@ import { genAccestoken } from './jwt';
  * @throws BadRequest if validation fails and user already exists
  */
 export const regiser = async (_req: Request, _res: Response) =>{
-    const errors = validationResult(_req);
-    if (!errors.isEmpty())
-       throw new createHttpError.BadRequest(errors.array()[0].msg);
     const { name, email, password } = _req.body;
     await checkUserExists(email);
     const user = await createUser({ name, email, password });
@@ -32,9 +29,6 @@ export const regiser = async (_req: Request, _res: Response) =>{
  * user does not exist or password is incorrect
  */
 export const login = async (_req: Request, _res: Response) =>{
-    const errors = validationResult(_req);
-    if (!errors.isEmpty()) 
-       throw new createHttpError.BadRequest(errors.array()[0].msg);
     const { email, password } = _req.body;
     const user = await findUserByEmail(email) 
     const match = await comparePassword(password, user.password);
