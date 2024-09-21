@@ -3,13 +3,13 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Made%20with-Node.js-green?style=for-the-badge" alt="Node.js">
   <img src="https://img.shields.io/badge/Deployed%20on-Heroku-purple?style=for-the-badge" alt="Heroku">
-  <img src="https://img.shields.io/github/license/your-username/jobstar?style=for-the-badge" alt="MIT License">
+  <img src="https://img.shields.io/github/license/ACAZUMAH/JobStar?style=for-the-badge" alt="MIT License">
 </p>
 
 <p align="center"> 
-  <img src="https://img.shields.io/github/v/release/your-username/jobstar?style=flat-square" alt="Version">
-  <img src="https://img.shields.io/github/last-commit/your-username/jobstar?style=flat-square" alt="Last Commit">
-  <img src="https://img.shields.io/github/issues/your-username/jobstar?style=flat-square" alt="Issues">
+  <img src="https://img.shields.io/github/v/release/ACAZUMAH/JobStar?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/github/last-commit/ACAZUMAH/JobStar?style=flat-square" alt="Last Commit">
+  <img src="https://img.shields.io/github/issues/ACAZUMAH/JobStar?style=flat-square" alt="Issues">
 </p>
 
 <p align="center">
