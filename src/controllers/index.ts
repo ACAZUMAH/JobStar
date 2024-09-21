@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import createHttpError from "http-errors";
-import job, { saveJob, findJobById } from "../services/jobs";
+import job, { saveJob } from "../services/jobs";
 
 /**
  * this controller gets all jobs from the database
@@ -43,24 +43,40 @@ export const getJob = async (_req: Request, _res: Response) =>{
  * @param _req Request
  * @param _res Response
  * @returns saved job
- * @throws BadRequest if job creation failed
+ * @throws BadRequest if job creation failed and if validation fails
  */
 export const createJob = async (_req: Request, _res: Response) =>{
-    const errors = validationResult(_req);
-    if (!errors.isEmpty()){
-        throw new createHttpError.BadRequest(errors.array()[0].msg);
-    }
     const save = await saveJob({ ..._req.body, createdBy: _req.user._id, });
     return _res.status(201).json({ status: 'success', data: save });
 };
 
+/**
+ * this controller updates a job in the database
+ * @param _req Request
+ * @param _res Response
+ * @returns updated job
+ * @throws BadRequest if job not found and if validation fails
+ */
 export const updateJob = async (_req: Request, _res: Response) =>{  
-
+    const { id } = _req.query;
+    const update = await job.updateJob({ userId: _req.user._id, jobId: id, ..._req.body })
+    return _res.status(200).json({ status: 'success', data: update });
 };
+
+/**
+ * this controller deletes a job from the database
+ * @param _req Request
+ * @param _res Response
+ */
 export const deleteJob = async (_req: Request, _res: Response) =>{
-        
+    const { id } = _req.query;
+    await job.deleteJob(_req.user._id, id as string);
+    return _res.status(204).json({ status: 'success' });
 };
 
+export const searchJobs = async (_req: Request, _res: Response) => {
+
+};
 export default { 
     getAllJobsByUser,
     getAllJobs,

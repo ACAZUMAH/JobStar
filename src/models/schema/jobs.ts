@@ -18,6 +18,10 @@ export const jobSchema = new Schema({
         enum: ['interview', 'declined', 'pending'],
         default: 'pending'
     },
+    salary:{
+        type: String,
+        required: false,
+    },
     createdBy:{
         type: Types.ObjectId,
         ref: 'User',
