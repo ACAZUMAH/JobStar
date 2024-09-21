@@ -37,4 +37,12 @@ export interface update {
     salary?: string;
 }
 
+export interface queryType {
+    company?: string;
+    position?: string;
+    status?: string;
+    salary?: string;
+    page?: string;
+    limit?: string;
+}
 export {};

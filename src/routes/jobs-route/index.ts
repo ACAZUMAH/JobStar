@@ -5,6 +5,8 @@ import auth from '../../services/authservices/jwt'
 import { validateJob, ValidateUpdateJob } from '../../middlewares/validators/validate';
 
 const router = Router();
+router.route('/search')
+.get(job.searchJobs);
 
 router.route('/jobs')
 .get(job.getAllJobs);

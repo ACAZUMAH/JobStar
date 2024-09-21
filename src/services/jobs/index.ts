@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 import job from "../../models/schema/jobs";
-import { job as jobType, update } from "../../services/types";
+import { job as jobType, queryType, update } from "../../services/types";
 import createHttpError from "http-errors";
 
 /**
@@ -88,11 +88,43 @@ export const deleteJob = async (
   return true
 };
 
+export const filterJobs = async( query: queryType) => {
+  const { company, position, status, salary, page, limits } = query;
+  const queryObject: queryType = {};
+  if (company) queryObject.company = company;
+  if (position) queryObject.position = position;
+  if (status) queryObject.status = status;
+  if (salary){
+    const operatorMap = {
+      '>': '$gt',
+      '>=': '$gte',
+      '=': '$eq',
+      '<': '$lt',
+      '<=': '$lte'
+    }
+    const regEx = /\b(<|>|>=|=|<|<=)\b/g;
+    const filter = (salary as string).replace(regEx, (matched) => `-${operatorMap[matched]}-`);
+    filter.split(',')
+    .forEach((item) => {
+      const [field, operator, value] = item.split('-');
+      queryObject[field] = { [operator]: Number(value) };
+    });
+  }
+  let result = job.find(queryObject);
+  const pages = Number(page) || 1
+  const limit = Number(limits) || 20
+  const skip = (pages - 1) * limit
+  result = result.skip(skip).limit(limits)
+  const product = await result
+  return product;
+}
+
 export default { 
   saveJob, 
   getJobs, 
   findAllJobsByUser, 
   findJobById, 
   updateJob,
-  deleteJob 
+  deleteJob,
+  filterJobs
 };

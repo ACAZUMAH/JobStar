@@ -49,7 +49,7 @@ export const validateJob = [
         .notEmpty()
         .withMessage('please provide the status'),
     body('salary')
-        .isString()
+        .isNumeric()
         .notEmpty()
         .withMessage('please provide salary')
 ];
