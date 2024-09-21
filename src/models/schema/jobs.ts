@@ -19,8 +19,8 @@ export const jobSchema = new Schema({
         default: 'pending'
     },
     salary:{
-        type: String,
-        required: false,
+        type: Number,
+        required: true,
     },
     createdBy:{
         type: Types.ObjectId,

@@ -67,6 +67,7 @@ export const updateJob = async (_req: Request, _res: Response) =>{
  * this controller deletes a job from the database
  * @param _req Request
  * @param _res Response
+ * @returns success message
  */
 export const deleteJob = async (_req: Request, _res: Response) =>{
     const { id } = _req.query;
@@ -75,13 +76,18 @@ export const deleteJob = async (_req: Request, _res: Response) =>{
 };
 
 export const searchJobs = async (_req: Request, _res: Response) => {
-
+    const result = await job.filterJobs({ ..._req.query });
+    if(result.length === 0)
+        return _res.status(404).json({ status: 'failure', message: 'No result found' });
+    return _res.status(200).json({ status: 'success', data: result });
 };
+
 export default { 
     getAllJobsByUser,
     getAllJobs,
     getJob,
     createJob,
     updateJob,
-    deleteJob
+    deleteJob,
+    searchJobs
 }  
