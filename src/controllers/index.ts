@@ -1,6 +1,4 @@
 import { Request, Response } from "express";
-import { validationResult } from "express-validator";
-import createHttpError from "http-errors";
 import job, { saveJob } from "../services/jobs";
 
 /**

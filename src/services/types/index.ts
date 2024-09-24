@@ -43,6 +43,6 @@ export interface queryType {
     status?: string;
     salary?: string;
     page?: string;
-    limit?: string;
+    limits?: string;
 }
 export {};

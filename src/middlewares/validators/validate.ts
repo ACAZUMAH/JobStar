@@ -8,6 +8,7 @@ export const validateSignup = [
         .withMessage('name should be atleast 3 characters'),
     body('email')
         .isEmail()
+        .withMessage('please provide a valid email')
         .normalizeEmail()
         .notEmpty()
         .withMessage('please provide your email'),
@@ -22,6 +23,7 @@ export const validateSignup = [
 export const validateLogin = [
     body('email')
         .isEmail()
+        .withMessage('please provide a valid email')
         .normalizeEmail()
         .notEmpty()
         .withMessage('please provide your email'),

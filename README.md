@@ -32,6 +32,7 @@
   <li>📝 <strong>Job Management</strong>: Create, update, and delete job entries.</li>
   <li>🔍 <strong>Search Functionality</strong>: Filter jobs by company name, position, status, and salary.</li>
   <li>⚙️ <strong>Error Handling</strong>: Robust error handling with express-async-errors and http-errors.</li>
+  <li>🛡️ <strong>Security Enhancements</strong>: Protection using Helmet, CORS, xss-clean, and express-rate-limit.</li>
   <li>☁️ <strong>Deployment</strong>: Hosted on Heroku.</li>
 </ul>
 
@@ -56,6 +57,10 @@
   <tr>
     <td><strong>APIs</strong></td>
     <td>Third-party for SMS & Email OTP</td>
+  </tr>
+  <tr>
+    <td><strong>Security</strong></td>
+    <td>Helmet, CORS, xss-clean, express-rate-limit</td>
   </tr>
   <tr>
     <td><strong>Deployment</strong></td>
