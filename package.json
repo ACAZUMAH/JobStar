@@ -30,8 +30,12 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.7",
     "ts-node-dev": "^2.0.0"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }

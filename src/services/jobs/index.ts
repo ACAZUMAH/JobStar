@@ -88,6 +88,11 @@ export const deleteJob = async (
   return true
 };
 
+/**
+ * 
+ * @param query 
+ * @returns 
+ */
 export const filterJobs = async( query: queryType) => {
   const { company, position, status, salary, page, limits } = query;
   const queryObject: queryType = {};
@@ -114,7 +119,7 @@ export const filterJobs = async( query: queryType) => {
   const pages = Number(page) || 1
   const limit = Number(limits) || 20
   const skip = (pages - 1) * limit
-  result = result.skip(skip).limit(limits)
+  result = result.skip(skip).limit(limit)
   const product = await result
   return product;
 }
