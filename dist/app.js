@@ -42,3 +42,4 @@ const startServer = async () => {
     }
 };
 startServer();
+exports.default = app;
