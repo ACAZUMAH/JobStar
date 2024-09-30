@@ -97,44 +97,51 @@
 <h2 id="api-endpoints">🌐 API Endpoints</h2>
 <table>
   <tr>
-    <th>Endpoint</th>
     <th>Description</th>
+    <th>Endpoint</th>
+    <th>Query Parameter<th>
   </tr>
   <tr>
-    <td><code>POST /auth/register</code></td>
     <td>Register a new user</td>
+    <td><code>POST /auth/register</code></td>
   </tr>
   <tr>
-    <td><code>POST /auth/login</code></td>
     <td>Login a user</td>
+    <td><code>POST /auth/login</code></td>
   </tr>
   <tr>
-    <td><code>GET /jobs</code></td>
     <td>Get all jobs</td>
+    <td><code>GET /jobs</code></td>
+    <td>page, limits<td>
   </tr>
    <tr>
-    <td><code>GET /jobs/user</code></td>
     <td>get all jobs of a user</td>
+    <td><code>GET /jobs/user</code></td>
+    <td>page, limit<td>
   </tr>
   <tr>
-    <td><code>GET /jobs/user?id</code></td>
     <td>get one job of a user</td>
+    <td><code>GET /job/user</code></td>
+    <td>id (required): job id<td>
   </tr>
   <tr>
-    <td><code>POST /jobs/post</code></td>
     <td>Create a new job</td>
+    <td><code>POST /job</code></td>
   </tr>
   <tr>
-    <td><code>PUT /jobs/update?id</code></td>
     <td>Update a job</td>
+    <td><code>PUT /job/</code></td>
+    <td>id (required): job id<td>
   </tr>
   <tr>
-    <td><code>DELETE /jobs/delete?id</code></td>
     <td>Delete a job</td>
+    <td><code>DELETE /jobs/delete?id</code></td>
+    <td>id (required): job id<td>
   </tr>
   <tr>
-    <td><code>GET /search</code></td>
     <td>Search for jobs by filters</td>
+    <td><code>GET /search</code></td>
+    <td>company,position,status,salary,page,limits,sortBy<td>
   </tr>
 </table>
 

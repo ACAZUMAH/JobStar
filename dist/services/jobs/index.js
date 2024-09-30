@@ -21,14 +21,19 @@ const saveJob = async (data) => {
 exports.saveJob = saveJob;
 /**
  * this function gets all jobs from the database
+ * @param query query parameters
  * @returns all jobs
  * @throws Error if no jobs found
  */
-const getJobs = async () => {
-    const jobs = await jobs_1.default.find({});
-    if (!jobs)
+const getJobs = async (query) => {
+    let page = Number(query.page) || 1;
+    let limit = Number(query.limits) || 10;
+    const skips = (page - 1) * limit;
+    const jobs = jobs_1.default.find({});
+    const result = await jobs.skip(skips).limit(limit);
+    if (!result)
         throw new Error("No jobs found");
-    return jobs;
+    return result;
 };
 exports.getJobs = getJobs;
 /**
@@ -37,11 +42,15 @@ exports.getJobs = getJobs;
  * @returns all jobs by user
  * @throws BadRequest if user has no posted jobs
  */
-const findAllJobsByUser = async (userId) => {
-    const jobs = await jobs_1.default.find({ createdBy: userId });
-    if (!jobs)
+const findAllJobsByUser = async (userId, query) => {
+    let page = Number(query.page) || 1;
+    let limit = Number(query.limits) || 10;
+    const skips = (page - 1) * limit;
+    const jobs = jobs_1.default.find({ createdBy: userId });
+    const result = await jobs.skip(skips).limit(limit);
+    if (!result)
         throw new http_errors_1.default.BadRequest("user has no posted jobs");
-    return jobs;
+    return result;
 };
 exports.findAllJobsByUser = findAllJobsByUser;
 /**
@@ -88,12 +97,14 @@ const deleteJob = async (userId, jobId) => {
 };
 exports.deleteJob = deleteJob;
 /**
- *
- * @param query
- * @returns
+ * filter jobs by company, position, status, salary, page, limits and sortBy
+ * and return the result
+ * @param query query parameters
+ * @returns result of filtered jobs
+ * @throws BadRequest if no jobs found
  */
 const filterJobs = async (query) => {
-    const { company, position, status, salary, page, limits } = query;
+    const { company, position, status, salary, page, limits, sortBy } = query;
     const queryObject = {};
     if (company)
         queryObject.company = company;
@@ -118,11 +129,20 @@ const filterJobs = async (query) => {
         });
     }
     let result = jobs_1.default.find(queryObject);
+    if (sortBy) {
+        const sortfields = sortBy.split(',').join(' ');
+        result = result.sort(sortfields);
+    }
+    else {
+        result = result.sort('createdAt');
+    }
     const pages = Number(page) || 1;
     const limit = Number(limits) || 20;
     const skip = (pages - 1) * limit;
     result = result.skip(skip).limit(limit);
     const product = await result;
+    if (!product)
+        throw new http_errors_1.default.BadRequest("No jobs found");
     return product;
 };
 exports.filterJobs = filterJobs;
