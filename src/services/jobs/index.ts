@@ -1,7 +1,8 @@
 import { Types } from "mongoose";
 import job from "../../models/schema/jobs";
-import { job as jobType, queryType, update } from "../../services/types";
+import { job as jobType, queryType, update } from "../types";
 import createHttpError from "http-errors";
+
 
 /**
  * this function saves a job to the database
@@ -17,13 +18,18 @@ export const saveJob = async (data: jobType) => {
 
 /**
  * this function gets all jobs from the database
+ * @param query query parameters
  * @returns all jobs
  * @throws Error if no jobs found
  */
-export const getJobs = async () => {
-  const jobs = await job.find({});
-  if (!jobs) throw new Error("No jobs found");
-  return jobs;
+export const getJobs = async (query: queryType) => {
+  let page = Number(query.page) || 1;
+  let limit = Number(query.limits) || 10;
+  const skips = (page - 1) * limit
+  const jobs = job.find({});
+  const result = await jobs.skip(skips).limit(limit)
+  if (!result) throw new Error("No jobs found");
+  return result;
 };
 
 /**
@@ -32,10 +38,14 @@ export const getJobs = async () => {
  * @returns all jobs by user
  * @throws BadRequest if user has no posted jobs
  */
-export const findAllJobsByUser = async (userId: string | Types.ObjectId) => {
-  const jobs = await job.find({ createdBy: userId });
-  if (!jobs) throw new createHttpError.BadRequest("user has no posted jobs");
-  return jobs;
+export const findAllJobsByUser = async (userId: string | Types.ObjectId, query: queryType) => {
+  let page = Number(query.page) || 1;
+  let limit = Number(query.limits) || 10;
+  const skips = (page - 1) * limit;
+  const jobs = job.find({ createdBy: userId });
+  const result = await jobs.skip(skips).limit(limit);
+  if (!result) throw new createHttpError.BadRequest("user has no posted jobs");
+  return result;
 };
 
 /**
@@ -89,12 +99,14 @@ export const deleteJob = async (
 };
 
 /**
- * 
- * @param query 
- * @returns 
+ * filter jobs by company, position, status, salary, page, limits and sortBy
+ * and return the result
+ * @param query query parameters
+ * @returns result of filtered jobs
+ * @throws BadRequest if no jobs found
  */
 export const filterJobs = async( query: queryType) => {
-  const { company, position, status, salary, page, limits } = query;
+  const { company, position, status, salary, page, limits, sortBy } = query;
   const queryObject: queryType = {};
   if (company) queryObject.company = company;
   if (position) queryObject.position = position;
@@ -116,11 +128,18 @@ export const filterJobs = async( query: queryType) => {
     });
   }
   let result = job.find(queryObject);
+  if (sortBy){
+    const sortfields = (sortBy as string).split(',').join(' ')
+    result = result.sort(sortfields)
+  }else{
+    result = result.sort('createdAt')
+  }
   const pages = Number(page) || 1
   const limit = Number(limits) || 20
   const skip = (pages - 1) * limit
   result = result.skip(skip).limit(limit)
   const product = await result
+  if (!product) throw new createHttpError.BadRequest("No jobs found");
   return product;
 }
 

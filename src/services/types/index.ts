@@ -44,5 +44,6 @@ export interface queryType {
     salary?: string;
     page?: string;
     limits?: string;
+    sortBy?: string;
 }
 export {};

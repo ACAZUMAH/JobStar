@@ -1,6 +1,6 @@
 import e, { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
-import { validationResult, ContextRunner } from "express-validator";
+import { ContextRunner } from "express-validator";
 
 
 /**

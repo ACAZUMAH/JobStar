@@ -2,12 +2,12 @@ import createHttpError from "http-errors";
 import { NextFunction, Request, Response } from "express";
 
 /**
- * 
- * @param err 
- * @param _req 
- * @param _res 
- * @param next 
- * @returns 
+ * catch all errors and return a response with custom error message
+ * @param err error object
+ * @param _req Request
+ * @param _res Response
+ * @param next NextFunction
+ * @returns response with error message
  */
 const errorHandler = (err: any, _req: Request, _res: Response, next: NextFunction) => {
     if (err instanceof createHttpError.HttpError) {
@@ -17,10 +17,10 @@ const errorHandler = (err: any, _req: Request, _res: Response, next: NextFunctio
 };
 
 /**
- * 
- * @param _req 
- * @param _res 
- * @returns 
+ * return a response with custom error message for route not found
+ * @param _req Request
+ * @param _res Response
+ * @returns response with error message
  */
 const notFound = (_req: Request, _res: Response) => {
     return _res.status(404).json({ message: "Route not Found" });
