@@ -10,7 +10,7 @@ const start = async () => {
     await (0, db_1.default)(process.env.MONGO_URL);
     const app = await (0, createExpressApp_1.default)();
     const server = http_1.default.createServer(app);
-    server.listen(process.env.PORT, () => {
+    server.listen(process.env.PORT || 3000, () => {
         console.log(`Server running on port ${process.env.PORT}`);
     });
 };
