@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/app.js",
-    "dev": "tsnd src/app.ts"
+    "start": "node dist/main.js",
+    "dev": "tsnd src/main.ts"
   },
   "author": "",
   "license": "ISC",
