@@ -1,4 +1,4 @@
-<h1 align="center">JobStar - Job Tracking Platform</h1>
+<h1 align="center">FindJobs - Job Tracking Platform</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Made%20with-Node.js-green?style=for-the-badge" alt="Node.js">
