@@ -4,6 +4,9 @@ import jobRoute from './jobs-route';
 
 const router = Router();
 
+router.get('/', (req, res) => {
+  res.json({ message: 'Welcome to the job portal API' });
+});
 router.use('/api', authRoute);  
 router.use('/api', jobRoute);
 
