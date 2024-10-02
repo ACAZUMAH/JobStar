@@ -2,7 +2,6 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Made%20with-Node.js-green?style=for-the-badge" alt="Node.js">
-  <img src="https://img.shields.io/badge/Deployed%20on-Heroku-purple?style=for-the-badge" alt="Heroku">
   <img src="https://img.shields.io/github/license/ACAZUMAH/JobStar?style=for-the-badge" alt="MIT License">
 </p>
 
@@ -23,7 +22,7 @@
 <hr>
 
 <h2>🚀 Project Overview</h2>
-<p><strong>JobStar</strong> is a job tracking platform designed for users to manage their job applications efficiently. It provides a secure environment for users to create, update, delete, and search for job entries, along with advanced authentication and OTP verification.</p>
+<p><strong>FindJobs</strong> is a job tracking platform designed for users to manage their job applications efficiently. It provides a secure environment for users to create, update, delete, and search for job entries, along with advanced authentication and OTP verification.</p>
 
 <h2 id="features">✨ Features</h2>
 <ul>
@@ -33,7 +32,6 @@
   <li>🔍 <strong>Search Functionality</strong>: Filter jobs by company name, position, status, and salary.</li>
   <li>⚙️ <strong>Error Handling</strong>: Robust error handling with express-async-errors and http-errors.</li>
   <li>🛡️ <strong>Security Enhancements</strong>: Protection using Helmet, CORS, xss-clean, and express-rate-limit.</li>
-  <li>☁️ <strong>Deployment</strong>: Hosted on Heroku.</li>
 </ul>
 
 <h2 id="technologies-used">🛠️ Technologies Used</h2>
@@ -61,10 +59,6 @@
   <tr>
     <td><strong>Security</strong></td>
     <td>Helmet, CORS, xss-clean, express-rate-limit</td>
-  </tr>
-  <tr>
-    <td><strong>Deployment</strong></td>
-    <td>Heroku</td>
   </tr>
 </table>
 

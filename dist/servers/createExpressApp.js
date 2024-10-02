@@ -17,7 +17,7 @@ const rate = (0, express_rate_limit_1.default)({
     windowMs: 15 * 60 * 1000,
     max: 100,
 });
-const startApp = async () => {
+const createApp = async () => {
     const app = (0, express_1.default)();
     app.set("trust proxy", 1);
     app.use(rate);
@@ -30,4 +30,4 @@ const startApp = async () => {
     app.use(errors_1.default.notFound);
     return app;
 };
-exports.default = startApp;
+exports.default = createApp;

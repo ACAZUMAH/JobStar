@@ -1,4 +1,3 @@
-import { required } from 'joi';
 import { Types,model, Schema } from 'mongoose';
 
 export const jobSchema = new Schema({
