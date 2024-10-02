@@ -5,7 +5,7 @@ const main = async () => {
     config();
     const start = await import('./servers/app');
     await start.default();
-}
+};
 
 main().catch((error) => {
     console.error('Error starting server:', error);

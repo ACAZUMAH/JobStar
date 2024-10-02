@@ -4,7 +4,7 @@ import helmet from "helmet";
 import cors from "cors";
 import xss from "xss-clean";
 import limit from "express-rate-limit";
-import express from "express";
+import express, { Application } from "express";
 import errors from "../middlewares/errors";
 import route from "../routes/index";
 import "../services/types";
@@ -14,7 +14,7 @@ const rate =   limit({
   max: 100,
 })
 
-const startApp = async () => {
+const createApp = async (): Promise<Application> => {
   const app = express();
   app.set("trust proxy", 1);
   app.use(rate);
@@ -25,6 +25,7 @@ const startApp = async () => {
   app.use(route);
   app.use(errors.errorHandler);
   app.use(errors.notFound);
+  return app;
 };
 
-export default startApp;
+export default createApp;
